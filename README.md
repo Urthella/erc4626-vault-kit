@@ -53,6 +53,12 @@ nix develop     # foundry
 forge test
 ```
 
+- **ERC-4626 conformance**: [a16z's property suite](https://github.com/a16z/erc4626-tests), all 26 properties with exact rounding (`delta = 0`), against the vault with 80% of its assets in the strategy
+- **Invariants** under random sequences of deposits, redeems, withdrawals, rebalances, yield and losses:
+  - `totalAssets` is always idle plus strategy balance
+  - all shares together never claim more than the vault holds
+  - balances add up to `totalSupply`
+  - everyone's `maxWithdraw` combined fits in `totalAssets`
 - **Unit tests** for buffering, pulling from the strategy, yield, caps, illiquidity, migration, slippage bounds and access control
 - **Fuzzing**: a deposit followed by a redeem never returns more than went in, even after a direct donation to the vault
 - **Inflation attack** fuzzed across donation and victim sizes
